@@ -18,12 +18,14 @@ def slow_text005(str):
   slow_text_time(str, 0.05)
 def slow_text003(str):
   slow_text_time(str, 0.03)
-
+def slow_text002(str):
+  slow_text_time(str, 0.02)
 def explain_1():
   slow_text003("Input a number between 1 and 50.\nA random number is generated between these numbers.\nyour guess if incorrect will tell you if it is too high or too low.\nIf you input a number outside the range you will be prompted to input a number inside the range.\n")
-
 def explain_2():
   slow_text003("Input 2 numbers and then an operation(+, -, *, /).\nIt will use the operation and make a total number.\nA random number will be pulled in a range of 0 to 100.\nA prompt will tell you  if your guess is too high or too low.\nIn which case you will be able to input all fields again.\n")
+def explain_3():
+  slow_text002("Input a number, range is not given for this one. You must complete this within 30 guesses or you will need to start from the beginning, including a new random number")
 def menu():
   slow_text005("Choose quiz 1, 2, or 3.\nThe larger the number, the higher the dificulty.\n")
   quiz_choice = input("")
@@ -34,6 +36,7 @@ def menu():
     explain_2()
     Quiz_2()
   elif quiz_choice == "3":
+    explain_3()
     Quiz_3()
   else:
     menu()
@@ -112,7 +115,17 @@ def Quiz_2():
           slow_text005(f"too {chalk.red(colour_text_6)}\n")
     except ValueError:
       Quiz_2()
-
 def Quiz_3():
-  print("yes")
+  while true:
+    Random_3 = random.randint(-1000000000, 1000000000)
+    for i in range(30):
+      slow_test003("Input number\n")
+      Question_2 = input("")
+      try:
+        Question_2 = float(Question_2)
+        if Question_2 == Random_3:
+          slow_text({chalk.green(colour_text_4)})
+          menu()
+       except ValueError:
+         Quiz_3()
 menu()
