@@ -8,6 +8,7 @@ colour_text_3 = "operation"
 colour_text_4 = "congrats"
 colour_text_5 = "high"
 colour_text_6 = "low"
+colour_text_7 = "number"
 
 def slow_text_time(str, ms):
   for letter in str:
@@ -25,7 +26,7 @@ def explain_1():
 def explain_2():
   slow_text003("Input 2 numbers and then an operation(+, -, *, /).\nIt will use the operation and make a total number.\nA random number will be pulled in a range of 0 to 100.\nA prompt will tell you  if your guess is too high or too low.\nIn which case you will be able to input all fields again.\n")
 def explain_3():
-  slow_text002("Input a number, range is not given for this one. You must complete this within 30 guesses or you will need to start from the beginning, including a new random number")
+  slow_text002("Input a number, range is not given for this one. You must complete this within 31 guesses or you will need to start from the beginning, including a new random number\n")
 def menu():
   slow_text005("Choose quiz 1, 2, or 3.\nThe larger the number, the higher the dificulty.\n")
   quiz_choice = input("")
@@ -116,16 +117,28 @@ def Quiz_2():
     except ValueError:
       Quiz_2()
 def Quiz_3():
-  while true:
-    Random_3 = random.randint(-1000000000, 1000000000)
-    for i in range(30):
-      slow_test003("Input number\n")
-      Question_2 = input("")
-      try:
-        Question_2 = float(Question_2)
-        if Question_2 == Random_3:
-          slow_text({chalk.green(colour_text_4)})
-          menu()
-       except ValueError:
-         Quiz_3()
+  while True:
+    Exit = input("Would you like to exit to the menu?\n")
+    if Exit.lower() == "yes":
+      menu()
+    else:
+      Random_3 = random.randint(-1000000000, 1000000000)
+      for i in range(31):
+        slow_text003(f"Input {chalk.magenta(colour_text_7)}\n")
+        Question_2 = input("")
+        try:
+          Question_2 = float(Question_2)
+          if Question_2 == Random_3:
+            slow_text003({chalk.green(colour_text_4)})
+            menu()
+          elif Question_2>= Random_3:
+            slow_text005(f"too {chalk.red(colour_text_5)}\n")
+            print("You have used" ,chalk.blue(i + 1) , "guesses")
+          else:
+            slow_text005(f"too {chalk.red(colour_text_6)}\n")
+            print("You have used" ,chalk.blue(i + 1) , "guesses")
+        except ValueError:
+          print("You have used" ,chalk.blue(i + 1) , "guesses")
+          slow_text003("")
+      Quiz_3()
 menu()
