@@ -141,7 +141,7 @@ while True:
     slow_text003("You have completed all 3 quizes. would you like to continue?\n")
     end_choice = input("")
     if end_choice == "no":
-      break
+      sys.exit("GG's")
   slow_text003("Choose quiz 1, 2, or 3.\nThe larger the number, the higher the dificulty.\n")
   quiz_choice = input("")
   if quiz_choice == "1":
